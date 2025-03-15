@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滴滴打人</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <div id="login-page" class="page active">
+            <div class="logo">
+                <i class="fas fa-fist-raised"></i>
+                <h1>滴滴打人</h1>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <i class="fas fa-mobile-alt"></i>
+                    <input type="tel" placeholder="请输入手机号">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-key"></i>
+                    <input type="text" placeholder="请输入验证码">
+                    <button class="code-btn">获取验证码</button>
+                </div>
+                <button class="login-btn" onclick="showPage('home-order')">登录</button>
+                <div class="agreement">
+                    登录即表示您同意<a href="#">用户协议</a>和<a href="#">隐私政策</a>
+                </div>
+                <div class="third-party">
+                    <p>其他登录方式</p>
+                    <div class="icons">
+                        <i class="fab fa-weixin"></i>
+                        <i class="fab fa-qq"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="home-order" class="page">
+            <div class="tab-bar">
+                <div class="tab active" onclick="switchTab(this, 'home-order')">下单模式</div>
+                <div class="tab" onclick="switchTab(this, 'home-accept')">接单模式</div>
+            </div>
+            <div class="map-container">
+                <img src="https://via.placeholder.com/375x500/eee?text=地图界面" alt="地图">
+                <div class="location-marker">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="nearby-markers">
+                    <div class="marker" style="top: 30%; left: 20%"><i class="fas fa-user"></i></div>
+                    <div class="marker" style="top: 40%; left: 60%"><i class="fas fa-user"></i></div>
+                    <div class="marker" style="top: 60%; left: 40%"><i class="fas fa-user"></i></div>
+                </div>
+            </div>
+            <div class="action-button" onclick="showPage('order-page')">
+                <i class="fas fa-fist-raised"></i> 我要打人
+            </div>
+            <div class="quick-options">
+                <div class="option">
+                    <i class="fas fa-home"></i>
+                    <span>常用地址</span>
+                </div>
+                <div class="option">
+                    <i class="fas fa-star"></i>
+                    <span>常用服务</span>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>首页</span>
+                </div>
+                <div class="nav-item" onclick="showPage('order-list')">
+                    <i class="fas fa-list"></i>
+                    <span>订单</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-comment"></i>
+                    <span>消息</span>
+                </div>
+                <div class="nav-item" onclick="showPage('profile')">
+                    <i class="fas fa-user"></i>
+                    <span>我的</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="home-accept" class="page">
+            <div class="tab-bar">
+                <div class="tab" onclick="switchTab(this, 'home-order')">下单模式</div>
+                <div class="tab active" onclick="switchTab(this, 'home-accept')">接单模式</div>
+            </div>
+            <div class="map-container">
+                <img src="https://via.placeholder.com/375x500/eee?text=地图界面" alt="地图">
+                <div class="location-marker">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="nearby-markers">
+                    <div class="order-marker" style="top: 25%; left: 30%"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="order-marker" style="top: 45%; left: 70%"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="order-marker" style="top: 65%; left: 25%"><i class="fas fa-exclamation-circle"></i></div>
+                </div>
+            </div>
+            <div class="action-button online">
+                <i class="fas fa-toggle-on"></i> 开始接单
+            </div>
+            <div class="nav-bar">
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>首页</span>
+                </div>
+                <div class="nav-item" onclick="showPage('order-list')">
+                    <i class="fas fa-list"></i>
+                    <span>订单</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-comment"></i>
+                    <span>消息</span>
+                </div>
+                <div class="nav-item" onclick="showPage('profile')">
+                    <i class="fas fa-user"></i>
+                    <span>我的</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="order-page" class="page">
+            <div class="header">
+                <i class="fas fa-arrow-left" onclick="showPage('home-order')"></i>
+                <h2>下单</h2>
+            </div>
+            <div class="order-form">
+                <div class="input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" placeholder="目标地址">
+                </div>
+                <div class="service-type">
+                    <h3>服务类型</h3>
+                    <div class="options">
+                        <div class="option active">
+                            <i class="fas fa-hand-paper"></i>
+                            <span>轻度教训</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-hand-rock"></i>
+                            <span>中度教训</span>
+                        </div>
+                        <div class="option">
+                            <i class="fas fa-skull-crossbones"></i>
+                            <span>重度教训</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="people-count">
+                    <h3>人数选择</h3>
+                    <div class="counter">
+                        <button class="minus">-</button>
+                        <span>1</span>
+                        <button class="plus">+</button>
+                    </div>
+                </div>
+                <div class="time-select">
+                    <h3>时间选择</h3>
+                    <div class="options">
+                        <div class="option active">立即</div>
+                        <div class="option">预约</div>
+                    </div>
+                </div>
+                <div class="special-request">
+                    <h3>特殊要求</h3>
+                    <textarea placeholder="请输入特殊要求..."></textarea>
+                </div>
+                <div class="price-estimate">
+                    <span>预估价格</span>
+                    <span class="price">¥299</span>
+                </div>
+                <button class="call-button" onclick="showPage('order-detail')">呼叫打手</button>
+            </div>
+        </div>
+
+        <div id="order-detail" class="page">
+            <div class="header">
+                <i class="fas fa-arrow-left" onclick="showPage('order-page')"></i>
+                <h2>订单详情</h2>
+            </div>
+            <div class="order-detail-form">
+                <div class="section">
+                    <h3>订单信息</h3>
+                    <div class="info-item">
+                        <span>服务类型</span>
+                        <span>轻度教训</span>
+                    </div>
+                    <div class="info-item">
+                        <span>人数</span>
+                        <span>1人</span>
+                    </div>
+                    <div class="info-item">
+                        <span>时间</span>
+                        <span>立即</span>
+                    </div>
+                    <div class="info-item">
+                        <span>地址</span>
+                        <span>北京市朝阳区某某街道</span>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>目标人物描述</h3>
+                    <div class="target-photo">
+                        <i class="fas fa-camera"></i>
+                        <span>上传照片</span>
+                    </div>
+                    <div class="target-features">
+                        <input type="text" placeholder="目标人物特征描述">
+                    </div>
+                    <div class="target-location">
+                        <input type="text" placeholder="目标人物常出没地点">
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>支付方式</h3>
+                    <div class="payment-options">
+                        <div class="option active">
+                            <i class="fab fa-alipay"></i>
+                            <span>支付宝</span>
+                        </div>
+                        <div class="option">
+                            <i class="fab fa-weixin"></i>
+                            <span>微信支付</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>优惠券</h3>
+                    <div class="coupon-select">
+                        <span>无可用优惠券</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="price-final">
+                    <span>最终价格</span>
+                    <span class="price">¥299</span>
+                </div>
+                <button class="confirm-button" onclick="showPage('order-tracking')">确认下单</button>
+            </div>
+        </div>
+
+        <div id="order-tracking" class="page">
+            <div class="header">
+                <i class="fas fa-arrow-left" onclick="showPage('home-order')"></i>
+                <h2>订单进行中</h2>
+            </div>
+            <div class="status-bar">
+                <div class="status-item active">
+                    <i class="fas fa-check-circle"></i>
+                    <span>已接单</span>
+                </div>
+                <div class="status-item active">
+                    <i class="fas fa-check-circle"></i>
+                    <span>前往目标</span>
+                </div>
+                <div class="status-item">
+                    <i class="far fa-circle"></i>
+                    <span>进行中</span>
+                </div>
+                <div class="status-item">
+                    <i class="far fa-circle"></i>
+                    <span>已完成</span>
+                </div>
+            </div>
+            <div class="map-container">
+                <img src="https://via.placeholder.com/375x300/eee?text=实时位置追踪" alt="地图">
+                <div class="location-marker">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="worker-marker">
+                    <i class="fas fa-running"></i>
+                </div>
+            </div>
+            <div class="worker-info">
+                <div class="worker-avatar">
+                    <img src="https://via.placeholder.com/60" alt="打手头像">
+                </div>
+                <div class="worker-details">
+                    <h3>张三</h3>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.9</span>
+                    </div>
+                    <div class="specialty">
+                        <span>专长: 轻度教训, 言语威胁</span>
+                    </div>
+                </div>
+                <div class="contact-button">
+                    <i class="fas fa-phone"></i>
+                </div>
+            </div>
+            <div class="eta">
+                <i class="fas fa-clock"></i>
+                <span>预计到达时间: 5分钟</span>
+            </div>
+            <div class="action-buttons">
+                <button class="cancel-button">取消订单</button>
+                <button class="complete-button" onclick="showPage('rating')">确认完成</button>
+            </div>
+        </div>
+
+        <div id="order-list" class="page">
+            <div class="header">
+                <h2>我的订单</h2>
+            </div>
+            <div class="tab-bar">
+                <div class="tab active">全部</div>
+                <div class="tab">待接单</div>
+                <div class="tab">进行中</div>
+                <div class="tab">已完成</div>
+                <div class="tab">已取消</div>
+            </div>
+            <div class="order-list">
+                <div class="order-item" onclick="showPage('order-tracking')">
+                    <div class="order-header">
+                        <span class="order-id">订单号: 123456789</span>
+                        <span class="order-status">进行中</span>
+                    </div>
+                    <div class="order-content">
+                        <div class="service-type">
+                            <i class="fas fa-hand-rock"></i>
+                            <span>中度教训</span>
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>2023-06-15 14:30</span>
+                        </div>
+                        <div class="order-price">
+                            <span>¥399</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-item">
+                    <div class="order-header">
+                        <span class="order-id">订单号: 123456788</span>
+                        <span class="order-status completed">已完成</span>
+                    </div>
+                    <div class="order-content">
+                        <div class="service-type">
+                            <i class="fas fa-hand-paper"></i>
+                            <span>轻度教训</span>
+                        </div>
+                        <div class="order-time">
+                            <i class="fas fa-clock"></i>
+                            <span>2023-06-10 09:15</span>
+                        </div>
+                        <div class="order-price">
+                            <span>¥299</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <div class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>首页</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-list"></i>
+                    <span>订单</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-comment"></i>
+                    <span>消息</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-user"></i>
+                    <span>我的</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="profile" class="page">
+            <div class="header">
+                <h2>个人中心</h2>
+            </div>
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="https://via.placeholder.com/80" alt="用户头像">
+                </div>
+                <div class="profile-info">
+                    <h3>用户昵称</h3>
+                    <div class="profile-phone">138****8888</div>
+                </div>
+                <div class="profile-edit">
+                    <i class="fas fa-edit"></i>
+                </div>
+            </div>
+            <div class="profile-balance">
+                <div class="balance-item">
+                    <span class="amount">¥888</span>
+                    <span class="label">账户余额</span>
+                </div>
+                <div class="balance-item">
+                    <span class="amount">3</span>
+                    <span class="label">优惠券</span>
+                </div>
+                <div class="balance-item">
+                    <span class="amount">4.8</span>
+                    <span class="label">我的评分</span>
+                </div>
+            </div>
+            <div class="profile-menu">
+                <div class="menu-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>常用地址管理</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>支付管理</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>优惠券</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-user-friends"></i>
+                    <span>邀请好友</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>设置</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item">
+                    <i class="fas fa-headset"></i>
+                    <span>客服中心</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="menu-item role-switch">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>切换角色</span>
+                    <div class="switch">
+                        <span>打人</span>
+                        <div class="switch-toggle"></div>
+                        <span>被打</span>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-bar">
+                <div class="nav-item" onclick="showPage('home-order')">
+                    <i class="fas fa-home"></i>
+                    <span>首页</span>
+                </div>
+                <div class="nav-item" onclick="showPage('order-list')">
+                    <i class="fas fa-list"></i>
+                    <span>订单</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-comment"></i>
+                    <span>消息</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-user"></i>
+                    <span>我的</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="rating" class="page">
+            <div class="header">
+                <i class="fas fa-arrow-left" onclick="showPage('home-order')"></i>
+                <h2>评价打手</h2>
+            </div>
+            <div class="rating-content">
+                <div class="worker-avatar">
+                    <img src="https://via.placeholder.com/80" alt="打手头像">
+                    <h3>张三</h3>
+                </div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="rating-tags">
+                    <div class="tag active">专业</div>
+                    <div class="tag">准时</div>
+                    <div class="tag">态度好</div>
+                    <div class="tag">技术精湛</div>
+                    <div class="tag">服务周到</div>
+                </div>
+                <div class="rating-comment">
+                    <textarea placeholder="请输入您的评价..."></textarea>
+                </div>
+                <div class="rating-options">
+                    <div class="option">
+                        <input type="checkbox" id="private">
+                        <label for="private">匿名评价</label>
+                    </div>
+                </div>
+                <div class="tip-section">
+                    <h3>给打手小费</h3>
+                    <div class="tip-options">
+                        <div class="tip">¥5</div>
+                        <div class="tip active">¥10</div>
+                        <div class="tip">¥20</div>
+                        <div class="tip">¥50</div>
+                        <div class="tip custom">自定义</div>
+                    </div>
+                </div>
+                <button class="submit-rating" onclick="showPage('home-order')">提交评价</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

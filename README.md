@@ -9,6 +9,6 @@
 
 
 
-<img src="images/1首页.png" alt="1首页" style="zoom:45%;" /><img src="images/2下单模式.png" alt="2下单模式" style="zoom:45%;" /><img src="images/3接单模式.png" alt="3接单模式" style="zoom:45%;" />
-<img src="images/4下单页面.png" alt="4下单页面" style="zoom:45%;" /><img src="images/5订单列表.png" alt="5订单列表" style="zoom:45%;" /><img src="images/6订单详情.png" alt="6订单详情" style="zoom:45%;" />
-<img src="images/7个人中心.png" alt="7个人中心" style="zoom:45%;" /><img src="images/8评价页面.png" alt="8评价页面" style="zoom:45%;" />
+<img src="images/1首页.png" alt="1首页" style="zoom:40%;" /><img src="images/2下单模式.png" alt="2下单模式" style="zoom:40%;" /><img src="images/3接单模式.png" alt="3接单模式" style="zoom:40%;" />
+<img src="images/4下单页面.png" alt="4下单页面" style="zoom:40%;" /><img src="images/5订单列表.png" alt="5订单列表" style="zoom:40%;" /><img src="images/6订单详情.png" alt="6订单详情" style="zoom:40%;" />
+<img src="images/7个人中心.png" alt="7个人中心" style="zoom:40%;" /><img src="images/8评价页面.png" alt="8评价页面" style="zoom:40%;" />
